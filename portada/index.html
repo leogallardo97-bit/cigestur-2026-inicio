@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VI CIGESTUR 2026 · Imagen principal</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Bloque para Google Sites. El recuadro conserva su proporción y no crece con el
+     contenido, así que todo se mide contra el ancho del propio recuadro (vw). */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; background: #2a221b; }
+  body { font: 400 15px/1.4 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; touch-action: manipulation; }
+  button:active { transform: scale(.97); }
+  :focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  .portada { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+  .portada::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(22, 16, 11, .9) 0, rgba(22, 16, 11, .66) 28%, rgba(22, 16, 11, 0) 60%);
+  }
+
+  .texto { position: absolute; z-index: 1; left: 20px; right: 20px; bottom: 16px; }
+  h1 { font: 500 clamp(19px, 4.4vw, 48px)/1.08 'Cormorant Garamond', Georgia, serif; max-width: 16em; text-wrap: balance; }
+  .dato { margin-top: clamp(4px, 1vw, 10px); font-size: clamp(12px, 1.5vw, 15px); }
+  .pie { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: clamp(4px, 1.1vw, 12px); }
+  .acciones { display: flex; flex-wrap: wrap; gap: 0 clamp(14px, 2.2vw, 24px); }
+  .enlace { display: inline-block; padding: 7px 0 3px; color: #fff; font-size: clamp(13px, 1.45vw, 15px); font-weight: 500; text-decoration: none; border-bottom: 1px solid currentColor; white-space: nowrap; }
+  .credito { font-size: clamp(10px, 1.15vw, 12px); text-align: right; }
+  @media (hover: hover) and (pointer: fine) {
+    .enlace { transition: opacity 150ms ease; }
+    .enlace:hover { opacity: .65; }
+  }
+
+  .idiomas { position: absolute; z-index: 2; top: 10px; right: 10px; display: flex; background: rgba(22, 16, 11, .62); font-size: 12px; }
+  .idiomas button { padding: 7px 9px; font-weight: 500; opacity: .72; }
+  .idiomas button[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+
+  .corto { display: none; }
+
+  /* Móvil: el recuadro mide unos 344×258 y hay que ahorrar cada línea. */
+  @media (max-width: 560px) {
+    .portada::after { background: linear-gradient(to top, rgba(22, 16, 11, .92) 0, rgba(22, 16, 11, .78) 45%, rgba(22, 16, 11, .34) 68%, rgba(22, 16, 11, 0) 88%); }
+    .texto { left: 14px; right: 14px; bottom: 9px; }
+    .largo { display: none; }
+    .corto { display: inline; }
+  }
+  @media (max-width: 300px) {
+    h1 { font-size: 17px; }
+    .dato { font-size: 11.5px; }
+    .enlace { font-size: 12.5px; }
+    .acciones { column-gap: 10px; }
+    .texto { left: 10px; right: 10px; bottom: 6px; }
+    .credito { font-size: 9.5px; }
+  }
+</style>
+</head>
+<body>
+<section class="portada">
+  <img class="foto" src="../assets/hero-4x3.jpg" width="1400" height="1050"
+    alt="Estatua de Averroes sentado con un libro en las manos, ante la muralla de Córdoba"
+    data-en-alt="Statue of Averroes seated with a book in his hands, in front of the city wall of Córdoba">
+  <div class="idiomas" role="group" aria-label="Idioma" data-en-label="Language">
+    <button id="es" aria-pressed="true" lang="es">ES</button>
+    <button id="en" aria-pressed="false" lang="en">EN</button>
+  </div>
+  <div class="texto">
+    <h1 data-en="6th International Congress on Heritage Tourism Management">VI Congreso Internacional de Gestión Turística del Patrimonio</h1>
+    <p class="dato">
+      <span class="largo" data-en="19 and 20 November 2026 · Rectorate of the University of Córdoba, Spain">19 y 20 de noviembre de 2026 · Rectorado de la Universidad de Córdoba</span>
+      <span class="corto" data-en="19–20 Nov 2026 · University of Córdoba">19 y 20 nov 2026 · Universidad de Córdoba</span>
+    </p>
+    <div class="pie">
+      <div class="acciones">
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" target="_blank" rel="noopener" data-en="See the programme">Ver el programa</a>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/sedesite-cigestur-2026" target="_blank" rel="noopener" data-en="Getting there">Cómo llegar</a>
+      </div>
+      <small class="credito"><span class="largo" data-en="Monument to Averroes, Córdoba. ">Monumento a Averroes, Córdoba. </span><span data-en="Photo: Rafael Carmona ©">Foto: Rafael Carmona ©</span></small>
+    </div>
+  </div>
+</section>
+<script>
+  var textos = document.querySelectorAll('[data-en]');
+  var etiquetas = document.querySelectorAll('[data-en-label]');
+  var alts = document.querySelectorAll('[data-en-alt]');
+  textos.forEach(function (el) { el.dataset.es = el.textContent; });
+  etiquetas.forEach(function (el) { el.dataset.esLabel = el.getAttribute('aria-label'); });
+  alts.forEach(function (el) { el.dataset.esAlt = el.alt; });
+  function ponerIdioma(idioma) {
+    var ingles = idioma === 'en';
+    document.documentElement.lang = idioma;
+    textos.forEach(function (el) { el.textContent = ingles ? el.dataset.en : el.dataset.es; });
+    etiquetas.forEach(function (el) { el.setAttribute('aria-label', ingles ? el.dataset.enLabel : el.dataset.esLabel); });
+    alts.forEach(function (el) { el.alt = ingles ? el.dataset.enAlt : el.dataset.esAlt; });
+    document.getElementById('es').setAttribute('aria-pressed', String(!ingles));
+    document.getElementById('en').setAttribute('aria-pressed', String(ingles));
+  }
+  document.getElementById('es').addEventListener('click', function () { ponerIdioma('es'); });
+  document.getElementById('en').addEventListener('click', function () { ponerIdioma('en'); });
+</script>
+</body>
+</html>

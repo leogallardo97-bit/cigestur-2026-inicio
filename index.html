@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VI CIGESTUR 2026 · Universidad de Córdoba</title>
+<meta name="description" content="VI Congreso Internacional de Gestión Turística del Patrimonio. 19 y 20 de noviembre de 2026, Universidad de Córdoba.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/logo-cigestur.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Mismos tokens que DESIGN_SYSTEM_RULES.md: papel, tinta y un solo color. */
+  :root {
+    --c-paper: #faf8f4;
+    --c-ink: #1d1b18;
+    --c-ink-2: #46423b;
+    --c-ink-3: #6e695f;
+    --c-rule: #e3ddd2;
+    --c-uco: #8b1c31;
+    --c-white: #ffffff;
+    --f-display: 'Cormorant Garamond', Georgia, serif;
+    --f-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --gutter: 4px;
+    --inset: 20px;
+    --header: 64px;
+    --ease-out: cubic-bezier(.23, 1, .32, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header) + 16px); }
+  body { background: var(--c-paper); color: var(--c-ink); font: 400 16px/1.5 var(--f-body); -webkit-font-smoothing: antialiased; }
+  img { display: block; width: 100%; height: auto; }
+  a { color: inherit; }
+  ul { list-style: none; }
+  h1, h2, h3 { text-wrap: balance; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; touch-action: manipulation; }
+  button:active { transform: scale(.97); }
+  :focus-visible { outline: 2px solid var(--c-uco); outline-offset: 3px; }
+  .sobre-oscuro :focus-visible { outline-color: var(--c-white); }
+
+  .saltar { position: absolute; left: 8px; top: -60px; z-index: 30; background: var(--c-ink); color: var(--c-white); padding: 10px 14px; }
+  .saltar:focus { top: 8px; }
+
+  /* La acción: una palabra subrayada. */
+  .enlace {
+    display: inline-block; padding: 8px 0 3px; color: var(--c-uco);
+    font-weight: 500; font-size: 15px; text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .sobre-oscuro .enlace { color: var(--c-white); }
+  @media (hover: hover) and (pointer: fine) {
+    .enlace { transition: opacity 150ms ease; }
+    .enlace:hover { opacity: .65; }
+    .nav a:hover, .pie a:hover { color: var(--c-uco); }
+  }
+
+  /* Aviso */
+  .aviso { background: var(--c-ink); color: var(--c-white); font-size: 13px; }
+  .aviso-dentro { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px var(--inset); }
+  .aviso a { color: inherit; font-weight: 600; text-underline-offset: 3px; white-space: nowrap; }
+  .aviso-cerrar { flex: none; width: 32px; height: 32px; margin: -6px -8px -6px 0; font-size: 18px; line-height: 1; }
+
+  /* Cabecera */
+  .cabecera { position: sticky; top: 0; z-index: 20; background: var(--c-paper); border-bottom: 1px solid var(--c-rule); }
+  .cabecera-dentro { height: var(--header); display: flex; align-items: center; gap: 36px; padding: 0 var(--inset); }
+  .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; flex: none; }
+  .marca img { width: auto; height: 42px; }
+  .marca-nombre { font: 600 26px/1 var(--f-display); letter-spacing: .04em; padding-left: 14px; border-left: 1px solid var(--c-rule); white-space: nowrap; }
+  .nav { flex: 1; }
+  .nav ul { display: flex; gap: 26px; }
+  .nav a { font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; padding: 8px 0; display: block; }
+  .idiomas { display: flex; gap: 2px; flex: none; font-size: 13px; }
+  .idiomas button { padding: 8px; color: var(--c-ink-3); font-weight: 500; }
+  .idiomas button[aria-pressed="true"] { color: var(--c-ink); text-decoration: underline; text-underline-offset: 4px; }
+  .abrir-menu { display: none; font-size: 14px; font-weight: 500; padding: 8px 0; }
+
+  /* Imagen principal */
+  .principal { position: relative; background: #2a221b; }
+  .principal picture img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 12%; max-height: calc(100svh - var(--header)); min-height: 560px; }
+  .principal::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(22, 16, 11, .86) 0, rgba(22, 16, 11, .62) 26%, rgba(22, 16, 11, 0) 58%);
+  }
+  .principal-texto { position: absolute; z-index: 1; left: var(--inset); right: var(--inset); bottom: 22px; color: var(--c-white); max-width: 760px; }
+  .principal h1 { font: 500 clamp(32px, 3.3vw, 48px)/1.08 var(--f-display); letter-spacing: -.005em; }
+  .principal-sub { margin-top: 10px; font-size: 15px; }
+  .principal-acciones { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 14px; }
+  .credito { position: absolute; z-index: 1; right: var(--inset); bottom: 28px; color: var(--c-white); font-size: 12px; }
+
+  /* La frase */
+  .frase { padding: 100px var(--inset); text-align: center; }
+  .frase h2 { font: 500 clamp(36px, 4.6vw, 66px)/1.06 var(--f-display); letter-spacing: -.012em; max-width: 19em; margin: 0 auto; }
+  .frase p { margin: 24px auto 0; max-width: 37em; color: var(--c-ink-2); }
+
+  /* Cuatro entradas */
+  .entradas { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
+  .entrada-imagen { display: block; overflow: hidden; background: var(--c-rule); }
+  .entrada-imagen img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .entrada-texto { padding: 18px var(--inset) 0; }
+  .entrada h3 { font: 500 26px/1.15 var(--f-display); }
+  .entrada p { margin-top: 6px; font-size: 14px; color: var(--c-ink-2); min-height: 3em; }
+  .entrada .enlace { margin-top: 6px; }
+
+  /* Día a día */
+  .dias { padding: 96px 0 92px; }
+  .dias-cabecera { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0 var(--inset) 20px; }
+  .dias-cabecera h2 { font: 500 34px/1.1 var(--f-display); }
+  .dia { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); padding: 18px 0; border-top: 1px solid var(--c-rule); }
+  .dia:last-child { border-bottom: 1px solid var(--c-rule); }
+  .dia-fecha { padding: 0 var(--inset); font: 500 26px/1.1 var(--f-display); }
+  .dia-fecha span { display: block; }
+  .dia-fecha span + span { margin-top: 3px; font: 400 13px/1.3 var(--f-body); color: var(--c-ink-3); }
+  .dia-contenido { grid-column: span 2; padding: 0 var(--inset); }
+  .dia-contenido p { color: var(--c-ink-2); font-size: 15px; }
+  .dia-contenido strong { display: block; color: var(--c-ink); font-weight: 600; }
+  .dia-tipo { padding: 3px var(--inset) 0; text-align: right; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c-ink-3); }
+  .dia-tipo.es-congreso { color: var(--c-uco); }
+
+  /* Banda */
+  .banda { position: relative; background: #2a221b; }
+  .banda img { aspect-ratio: 16 / 9; object-fit: cover; max-height: 86svh; min-height: 480px; }
+  .banda::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(22, 16, 11, .82) 0, rgba(22, 16, 11, 0) 42%);
+  }
+  .banda-texto { position: absolute; z-index: 1; left: var(--inset); right: var(--inset); bottom: 22px; color: var(--c-white); }
+  .banda h2 { font: 500 clamp(28px, 2.6vw, 38px)/1.1 var(--f-display); }
+  .banda p { margin-top: 6px; font-size: 15px; }
+  .banda .enlace { margin-top: 8px; }
+
+  /* Quién lo hace posible */
+  .instituciones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px var(--gutter); padding: 88px 0; }
+  .instituciones h2 { grid-column: 1; padding: 0 var(--inset); font: 500 34px/1.1 var(--f-display); }
+  .logos { grid-column: 2 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 28px 52px; padding: 0 var(--inset); }
+  .logos img { width: auto; }
+  .logo-uco { height: 64px; }
+  .logo-catedra { height: 96px; }
+  .logo-cigestur { height: 112px; }
+  .inst-bloque { padding: 0 var(--inset); font-size: 14px; color: var(--c-ink-2); }
+  .inst-bloque h3 { margin-bottom: 8px; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--c-ink-3); }
+  .inst-bloque .segundo { margin-top: 20px; }
+  .inst-bloque.ancho { grid-column: span 2; }
+  .inst-bloque li + li { margin-top: 3px; }
+  .inst-bloque .enlace { margin-top: 10px; font-size: 14px; }
+
+  /* Pie */
+  .pie { border-top: 1px solid var(--c-rule); padding: 44px 0 28px; font-size: 14px; }
+  .pie-columnas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px var(--gutter); }
+  .pie-col { padding: 0 var(--inset); }
+  .pie h2 { font: 500 22px/1.15 var(--f-display); margin-bottom: 10px; }
+  .pie li { margin-top: 5px; }
+  .pie a { text-decoration: none; }
+  .pie address { font-style: normal; color: var(--c-ink-2); }
+  .pie address a { display: block; margin-top: 8px; color: var(--c-uco); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+  .creditos { margin-top: 40px; padding: 18px var(--inset) 0; border-top: 1px solid var(--c-rule); font-size: 12px; color: var(--c-ink-3); }
+  .creditos a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Tableta */
+  @media (max-width: 1120px) {
+    .abrir-menu { display: block; margin-left: auto; }
+    .cabecera-dentro { gap: 16px; }
+    .nav {
+      position: absolute; left: 0; right: 0; top: 100%; background: var(--c-paper);
+      border-bottom: 1px solid var(--c-rule); padding: 8px var(--inset) 16px;
+      opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 180ms;
+    }
+    .nav.abierto { opacity: 1; visibility: visible; transform: none; }
+    .nav ul { flex-direction: column; gap: 0; }
+    .nav a { font-size: 17px; padding: 12px 0; border-bottom: 1px solid var(--c-rule); }
+    .nav li:last-child a { border-bottom: 0; }
+    .entradas { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+    .entrada p { min-height: 0; }
+    .instituciones { grid-template-columns: 1fr 1fr; }
+    .instituciones h2, .logos { grid-column: 1 / -1; }
+    .inst-bloque.ancho { grid-column: 1 / -1; }
+    .pie-columnas { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Móvil: el título sale de la foto, porque no cabría sin taparla. */
+  @media (max-width: 760px) {
+    :root { --inset: 16px; --header: 56px; }
+    .cabecera-dentro { gap: 10px; }
+    /* En móvil solo el escudo: el nombre de la universidad no se leería a este tamaño. */
+    .marca img { width: 27px; height: 34px; object-fit: cover; object-position: left center; }
+    .marca { gap: 10px; }
+    .marca-nombre { font-size: 21px; padding-left: 10px; }
+    .idiomas button { padding: 8px 5px; }
+    .aviso { font-size: 12.5px; }
+    .principal { background: none; }
+    .principal::after { display: none; }
+    .principal picture img { aspect-ratio: 4 / 5; min-height: 0; max-height: none; object-position: 50% 0; }
+    .principal-texto { position: static; padding: 22px var(--inset) 0; color: var(--c-ink); max-width: none; }
+    .principal h1 { font-size: 34px; }
+    .principal-sub { color: var(--c-ink-2); }
+    .principal-texto.sobre-oscuro .enlace { color: var(--c-uco); }
+    .principal-texto.sobre-oscuro :focus-visible { outline-color: var(--c-uco); }
+    .credito { position: static; display: block; padding: 18px var(--inset) 0; color: var(--c-ink-3); }
+    .frase { padding: 68px var(--inset); }
+    .entrada h3 { font-size: 23px; }
+    .entrada-texto { padding: 12px 12px 0; }
+    .entrada p { font-size: 13.5px; }
+    .dias { padding: 68px 0; }
+    .dias-cabecera { flex-direction: column; gap: 4px; }
+    .dia { grid-template-columns: 96px 1fr; column-gap: 0; }
+    .dia-fecha { grid-row: span 2; padding-right: 0; font-size: 23px; }
+    .dia-contenido { grid-column: 2; }
+    .dia-tipo { grid-column: 2; grid-row: 2; text-align: left; padding-top: 6px; }
+    .banda { background: none; }
+    .banda::after { display: none; }
+    .banda img { aspect-ratio: 4 / 5; min-height: 0; max-height: none; object-position: 60% 50%; }
+    .banda-texto { position: static; padding: 18px var(--inset) 0; color: var(--c-ink); }
+    .banda p { color: var(--c-ink-2); }
+    .banda-texto.sobre-oscuro .enlace { color: var(--c-uco); }
+    .banda-texto.sobre-oscuro :focus-visible { outline-color: var(--c-uco); }
+    .instituciones { padding: 64px 0; grid-template-columns: 1fr; gap: 32px; }
+    .logos { gap: 24px 32px; }
+    .logo-uco { height: 52px; }
+    .logo-catedra { height: 80px; }
+    .logo-cigestur { height: 92px; }
+    .pie-columnas { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 350px) {
+    .marca img { display: none; }
+    .marca-nombre { padding-left: 0; border-left: 0; }
+  }
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido" data-en="Skip to content">Saltar al contenido</a>
+
+<div class="aviso sobre-oscuro" id="aviso" data-hasta="2026-11-11">
+  <div class="aviso-dentro">
+    <p>
+      <span data-en="Registration is closed. Presenting a paper? Send your slides before 11 November.">Inscripciones cerradas. Si presentas comunicación, envía tu presentación antes del 11 de noviembre.</span>
+      <a href="https://www.congresogestionturisticadelpatrimonio.com/comunicaci%C3%B3n-oral" data-en="See the guide">Ver la guía</a>
+    </p>
+    <button class="aviso-cerrar" id="cerrarAviso" aria-label="Cerrar aviso" data-en-label="Close notice">×</button>
+  </div>
+</div>
+
+<header class="cabecera">
+  <div class="cabecera-dentro">
+    <a class="marca" href="https://www.congresogestionturisticadelpatrimonio.com/inicio" aria-label="VI CIGESTUR 2026, inicio" data-en-label="VI CIGESTUR 2026, home">
+      <img src="assets/logo-uco.png" alt="" width="355" height="173">
+      <span class="marca-nombre">VI CIGESTUR</span>
+    </a>
+    <button class="abrir-menu" id="abrirMenu" aria-expanded="false" aria-controls="nav" data-en="Menu">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal" data-en-label="Main">
+      <ul>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" data-en="Programme">Programa</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/conferencias-vi-cigestur" data-en="Lectures">Conferencias</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/l%C3%ADneas-tem%C3%A1ticas-thematic-lines" data-en="Thematic lines">Líneas temáticas</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/comunicaci%C3%B3n-oral" data-en="Authors">Autores</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/sedesite-cigestur-2026" data-en="Venue and travel">Sede y viaje</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/organizaci%C3%B3norganization/organizaci%C3%B3n-comit%C3%A9s" data-en="Organisation">Organización</a></li>
+      </ul>
+    </nav>
+    <div class="idiomas" role="group" aria-label="Idioma" data-en-label="Language">
+      <button id="es" aria-pressed="true" lang="es">ES</button>
+      <button id="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+  <section class="principal">
+    <picture>
+      <source media="(max-width: 760px)" srcset="assets/hero-movil.jpg" width="1000" height="1250">
+      <img src="assets/hero-1600.jpg" srcset="assets/hero-1600.jpg 1600w, assets/hero-2400.jpg 2400w" sizes="100vw" width="2400" height="1350" fetchpriority="high"
+        alt="Estatua de Averroes sentado con un libro en las manos, ante la muralla de Córdoba"
+        data-en-alt="Statue of Averroes seated with a book in his hands, in front of the city wall of Córdoba">
+    </picture>
+    <div class="principal-texto sobre-oscuro">
+      <h1 data-en="6th International Congress on Heritage Tourism Management">VI Congreso Internacional de Gestión Turística del Patrimonio</h1>
+      <p class="principal-sub" data-en="19 and 20 November 2026 · Rectorate of the University of Córdoba, Spain">19 y 20 de noviembre de 2026 · Rectorado de la Universidad de Córdoba</p>
+      <div class="principal-acciones">
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" data-en="See the programme">Ver el programa</a>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/sedesite-cigestur-2026" data-en="Getting to the venue">Cómo llegar a la sede</a>
+      </div>
+    </div>
+    <small class="credito" data-en="Monument to Averroes, Córdoba. Photo: Rafael Carmona ©">Monumento a Averroes, Córdoba. Foto: Rafael Carmona ©</small>
+  </section>
+
+  <section class="frase">
+    <h2 data-en="Córdoba brings together international research on tourism and heritage.">Córdoba reúne a la investigación internacional en turismo y patrimonio.</h2>
+    <p data-en="Sixth edition: tourism sustainability, technological innovation and the responsible integration of cultural and natural heritage in inland destinations.">Sexta edición: sostenibilidad turística, innovación tecnológica e integración responsable del patrimonio cultural y natural en destinos de interior.</p>
+  </section>
+
+  <section class="entradas" aria-label="Accesos principales" data-en-label="Main sections">
+    <article class="entrada">
+      <a class="entrada-imagen" href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" tabindex="-1" aria-hidden="true">
+        <img src="assets/entrada-programa.jpg" alt="" width="640" height="800" loading="lazy">
+      </a>
+      <div class="entrada-texto">
+        <h3 data-en="Programme">Programa</h3>
+        <p data-en="Sessions, rooms and times, from 17 to 21 November.">Sesiones, salas y horarios, del 17 al 21 de noviembre.</p>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" data-en="See the programme">Ver el programa</a>
+      </div>
+    </article>
+    <article class="entrada">
+      <a class="entrada-imagen" href="https://www.congresogestionturisticadelpatrimonio.com/universidades-invitadas-vi-cigestur-2026" tabindex="-1" aria-hidden="true">
+        <img src="assets/entrada-universidades.jpg" alt="" width="854" height="1067" loading="lazy">
+      </a>
+      <div class="entrada-texto">
+        <h3 data-en="Guest universities">Universidades invitadas</h3>
+        <p data-en="Lectures from partner universities in America, Africa, Asia and Europe.">Conferencias de universidades de América, África, Asia y Europa.</p>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/universidades-invitadas-vi-cigestur-2026" data-en="Meet the speakers">Conocer a los ponentes</a>
+      </div>
+    </article>
+    <article class="entrada">
+      <a class="entrada-imagen" href="https://www.congresogestionturisticadelpatrimonio.com/sedesite-cigestur-2026" tabindex="-1" aria-hidden="true">
+        <img src="assets/entrada-sede.jpg" alt="" width="900" height="1125" loading="lazy">
+      </a>
+      <div class="entrada-texto">
+        <h3 data-en="The venue">La sede</h3>
+        <p data-en="Rectorate of the University of Córdoba, Av. Medina Azahara.">Rectorado de la Universidad de Córdoba, Av. Medina Azahara.</p>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/sedesite-cigestur-2026" data-en="Venue and travel">Sede y viaje</a>
+      </div>
+    </article>
+    <article class="entrada">
+      <a class="entrada-imagen" href="https://www.congresogestionturisticadelpatrimonio.com/destino-c%C3%B3rdoba-capital-y-provincia" tabindex="-1" aria-hidden="true">
+        <img src="assets/entrada-cordoba.jpg" alt="" width="900" height="1125" loading="lazy">
+      </a>
+      <div class="entrada-texto">
+        <h3 data-en="Córdoba">Córdoba</h3>
+        <p data-en="The host city and province, with four UNESCO World Heritage inscriptions.">Ciudad y provincia anfitrionas, con cuatro declaraciones de la UNESCO.</p>
+        <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/destino-c%C3%B3rdoba-capital-y-provincia" data-en="Discover the destination">Descubrir el destino</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="dias" aria-labelledby="dias-titulo">
+    <div class="dias-cabecera">
+      <h2 id="dias-titulo" data-en="Day by day">Día a día</h2>
+      <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/programa-completo-pdf" data-en="Full programme (PDF)">Programa completo (PDF)</a>
+    </div>
+    <div class="dia">
+      <p class="dia-fecha"><span data-en="17 Nov">17 nov</span><span data-en="Tuesday">Martes</span></p>
+      <div class="dia-contenido"><p><strong data-en="Arrivals and book presentation">Acogida y presentación de libro</strong><span data-en="Faculty of Labour Sciences">Facultad de Ciencias del Trabajo</span></p></div>
+      <p class="dia-tipo" data-en="Pre-congress">Precongreso</p>
+    </div>
+    <div class="dia">
+      <p class="dia-fecha"><span data-en="18 Nov">18 nov</span><span data-en="Wednesday">Miércoles</span></p>
+      <div class="dia-contenido"><p><strong data-en="Guest university lectures">Conferencias de universidades invitadas</strong><span data-en="Archaeological Museum of Córdoba and El pan que nos une">Museo Arqueológico de Córdoba y «El pan que nos une»</span></p></div>
+      <p class="dia-tipo" data-en="Pre-congress">Precongreso</p>
+    </div>
+    <div class="dia">
+      <p class="dia-fecha"><span data-en="19 Nov">19 nov</span><span data-en="Thursday">Jueves</span></p>
+      <div class="dia-contenido"><p><strong data-en="Opening and parallel sessions">Inauguración y sesiones paralelas</strong><span data-en="Bullfighting Museum and gala dinner">Museo Taurino y cena de gala</span></p></div>
+      <p class="dia-tipo es-congreso" data-en="Congress">Congreso</p>
+    </div>
+    <div class="dia">
+      <p class="dia-fecha"><span data-en="20 Nov">20 nov</span><span data-en="Friday">Viernes</span></p>
+      <div class="dia-contenido"><p><strong data-en="Sessions, thematic panels and closing">Sesiones, mesas temáticas y clausura</strong><span data-en="Closing lunch and night visit to the Mosque-Cathedral">Almuerzo de clausura y visita nocturna a la Mezquita-Catedral</span></p></div>
+      <p class="dia-tipo es-congreso" data-en="Congress">Congreso</p>
+    </div>
+    <div class="dia">
+      <p class="dia-fecha"><span data-en="21 Nov">21 nov</span><span data-en="Saturday">Sábado</span></p>
+      <div class="dia-contenido"><p><strong data-en="Technical tourism day in Montilla">Jornada técnico-turística en Montilla</strong><span data-en="Winery, lunch and a visit. Limited to 25 places">Bodega, almuerzo y visita. Aforo de 25 plazas</span></p></div>
+      <p class="dia-tipo" data-en="Field visit">Visita técnica</p>
+    </div>
+  </section>
+
+  <section class="banda">
+    <img src="assets/mezquita-2400.jpg" width="2400" height="1350" loading="lazy"
+      alt="Arcos de dovelas rojas y blancas en la sala hipóstila de la Mezquita-Catedral de Córdoba"
+      data-en-alt="Red and white horseshoe arches in the hypostyle hall of the Mosque-Cathedral of Córdoba">
+    <div class="banda-texto sobre-oscuro">
+      <h2 data-en="Night visit to the Mosque-Cathedral">Visita nocturna a la Mezquita-Catedral</h2>
+      <p data-en="Friday 20 November, 20:00. Meeting point: Puerta de la Calle Torrijos">Viernes 20 de noviembre, 20:00. Punto de encuentro: Puerta de la Calle Torrijos</p>
+      <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" data-en="See the social programme">Ver el programa social</a>
+    </div>
+  </section>
+
+  <section class="instituciones" aria-labelledby="inst-titulo">
+    <h2 id="inst-titulo" data-en="Organised by">Organiza</h2>
+    <div class="logos">
+      <img class="logo-uco" src="assets/logo-uco.png" alt="Universidad de Córdoba" data-en-alt="University of Córdoba" width="355" height="173" loading="lazy">
+      <img class="logo-catedra" src="assets/logo-catedra.png" alt="Cátedra de Turismo Patrimonial y Cultural" data-en-alt="Chair of Heritage and Cultural Tourism" width="492" height="407" loading="lazy">
+      <img class="logo-cigestur" src="assets/logo-cigestur.png" alt="CIGESTUR" width="533" height="600" loading="lazy">
+    </div>
+    <div class="inst-bloque">
+      <h3 data-en="Organising centres">Centros organizadores</h3>
+      <ul>
+        <li>CAPT</li>
+        <li>UCOCultura</li>
+        <li>UCOTUREM</li>
+      </ul>
+      <h3 class="segundo" data-en="Faculties">Facultades</h3>
+      <ul>
+        <li data-en="Labour Sciences">Ciencias del Trabajo</li>
+        <li data-en="Law, Economics and Business">Derecho y C.C. Económicas y Empresariales</li>
+        <li data-en="Philosophy and Arts">Filosofía y Letras</li>
+      </ul>
+    </div>
+    <div class="inst-bloque ancho">
+      <h3 data-en="In collaboration with, among others">Colaboran, entre otras entidades</h3>
+      <p>Junta de Andalucía · Diputación de Córdoba · Ayuntamiento de Córdoba · IATUR · Museo Taurino Municipal de Córdoba · Cabildo Catedral de Córdoba · Conjunto Arqueológico Madinat Al-Zahra · Museo Arqueológico de Córdoba · Belloterra · Palacio de Viana · Patio de las Comedias · Restaurante El Churrasco · Consejo Regulador de la D.O.P. Montilla-Moriles · Ayuntamiento de Montilla · Bodegas Robles · Oficina de Turismo de Priego de Córdoba · D.O.P. Priego de Córdoba · AOVE La Santa</p>
+      <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/inicio" data-en="All partners, on the official website">Todas las entidades, en la web oficial</a>
+    </div>
+    <div class="inst-bloque">
+      <h3 data-en="International">Internacional</h3>
+      <a class="enlace" href="https://www.congresogestionturisticadelpatrimonio.com/organizaci%C3%B3norganization/international-universities" data-en="Partner universities">Universidades colaboradoras</a>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="pie-columnas">
+    <div class="pie-col">
+      <h2 data-en="Technical Secretariat">Secretaría Técnica</h2>
+      <address>
+        <span data-en="Rectorate of the University of Córdoba, Av. Medina Azahara, s/n">Rectorado de la Universidad de Córdoba, Av. Medina Azahara, s/n</span>
+        <a href="mailto:info@congresogestionturisticadelpatrimonio.com">info@<wbr>congresogestionturisticadelpatrimonio.com</a>
+      </address>
+    </div>
+    <div class="pie-col">
+      <h2 data-en="Programme">Programa</h2>
+      <ul>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/programa-general-2026" data-en="General programme">Programa general</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/programa-completo-pdf" data-en="Full programme (PDF)">Programa completo (PDF)</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/conferencias-vi-cigestur" data-en="Lectures">Conferencias</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/jornada-internacional-argelia-2026" data-en="Algeria International Day">Jornada Internacional Argelia</a></li>
+      </ul>
+    </div>
+    <div class="pie-col">
+      <h2 data-en="Authors">Autores</h2>
+      <ul>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/comunicaci%C3%B3n-oral" data-en="Oral presentation">Comunicación oral</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/difusi%C3%B3n-de-resultados-opciones-a-publicar" data-en="Publication options">Opciones de publicación</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/fechas-clave-key-dates" data-en="Key dates">Fechas clave</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/consulta-ediciones-anteriores" data-en="Previous editions">Ediciones anteriores</a></li>
+      </ul>
+    </div>
+    <div class="pie-col">
+      <h2 data-en="Your stay">Tu estancia</h2>
+      <ul>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/hoteles-recomendados-recommended-hotels" data-en="Recommended hotels">Hoteles recomendados</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/descuento-trenes-discount-in-trains" data-en="Train discount">Descuento en trenes</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/actividades-paralelas-descuento-congresistas" data-en="Parallel activities">Actividades paralelas</a></li>
+        <li><a href="https://www.congresogestionturisticadelpatrimonio.com/c%C3%B3rdoba-y-el-flamenco" data-en="Córdoba and flamenco">Córdoba y el flamenco</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="creditos">
+    <span data-en="Photos: Rafael Carmona © (Averroes); CIGESTUR archive (programme, universities); Américo Toledano (Rectorate),">Fotos: Rafael Carmona © (Averroes); archivo CIGESTUR (programa, universidades); Américo Toledano (Rectorado),</span>
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>
+    <span data-en="; Daderot and Dinkum, CC0 (Mosque-Cathedral and courtyard). Wikimedia Commons.">; Daderot y Dinkum, CC0 (Mezquita-Catedral y patio). Wikimedia Commons.</span>
+  </p>
+</footer>
+
+<script>
+  // Idioma: cada texto guarda su versión inglesa en data-en.
+  var traducibles = document.querySelectorAll('[data-en]');
+  var conEtiqueta = document.querySelectorAll('[data-en-label]');
+  var conAlt = document.querySelectorAll('[data-en-alt]');
+  traducibles.forEach(function (el) { el.dataset.es = el.textContent; });
+  conEtiqueta.forEach(function (el) { el.dataset.esLabel = el.getAttribute('aria-label'); });
+  conAlt.forEach(function (el) { el.dataset.esAlt = el.alt; });
+
+  function ponerIdioma(idioma) {
+    var ingles = idioma === 'en';
+    document.documentElement.lang = idioma;
+    traducibles.forEach(function (el) { el.textContent = ingles ? el.dataset.en : el.dataset.es; });
+    conEtiqueta.forEach(function (el) { el.setAttribute('aria-label', ingles ? el.dataset.enLabel : el.dataset.esLabel); });
+    conAlt.forEach(function (el) { el.alt = ingles ? el.dataset.enAlt : el.dataset.esAlt; });
+    document.getElementById('es').setAttribute('aria-pressed', String(!ingles));
+    document.getElementById('en').setAttribute('aria-pressed', String(ingles));
+    document.title = ingles ? 'VI CIGESTUR 2026 · University of Córdoba' : 'VI CIGESTUR 2026 · Universidad de Córdoba';
+  }
+  document.getElementById('es').addEventListener('click', function () { ponerIdioma('es'); });
+  document.getElementById('en').addEventListener('click', function () { ponerIdioma('en'); });
+
+  // Dentro del recuadro de Google Sites no se puede navegar en la misma pestaña.
+  if (window.self !== window.top) {
+    document.querySelectorAll('a[href^="http"]').forEach(function (a) { a.target = '_blank'; a.rel = 'noopener'; });
+  }
+
+  // El aviso desaparece solo cuando vence el plazo.
+  var aviso = document.getElementById('aviso');
+  if (new Date() >= new Date(aviso.dataset.hasta + 'T00:00:00')) aviso.hidden = true;
+  document.getElementById('cerrarAviso').addEventListener('click', function () { aviso.hidden = true; });
+
+  // Menú en pantallas estrechas.
+  var botonMenu = document.getElementById('abrirMenu');
+  var nav = document.getElementById('nav');
+  function ponerMenu(abierto) {
+    nav.classList.toggle('abierto', abierto);
+    botonMenu.setAttribute('aria-expanded', String(abierto));
+  }
+  botonMenu.addEventListener('click', function () { ponerMenu(!nav.classList.contains('abierto')); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('abierto')) { ponerMenu(false); botonMenu.focus(); }
+  });
+</script>
+</body>
+</html>
